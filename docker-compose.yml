@@ -10,12 +10,15 @@ services:
   backend:
     image: python:3.9.2
     working_dir: /code/api_server
-    command: python manage.py migrate && && python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py migrate && && python manage.py runserver 0.0.0.0:8000
+    # command: bash -c "pip install -r requirements-dev.txt && python manage.py runserver 0.0.0.0:8000"
+    command: python manage.py runserver 0.0.0.0:8000
     
     # user: 1000:1000
 
     volumes:
       - .:/code
+      - ./pip_cache:/root/.cache/pip
     ports:
       - "8000:8000"
     depends_on:
