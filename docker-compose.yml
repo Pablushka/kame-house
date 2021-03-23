@@ -1,0 +1,22 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  backend:
+    image: python:3.9.2
+    working_dir: /code/api_server
+    command: python manage.py migrate && && python manage.py runserver 0.0.0.0:8000
+    
+    # user: 1000:1000
+
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
