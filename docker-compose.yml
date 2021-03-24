@@ -8,7 +8,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   backend:
-    image: python:3.9.2
+    # image: python:3.9.2
+    build: .
     working_dir: /code/api_server
     # command: python manage.py migrate && && python manage.py runserver 0.0.0.0:8000
     # command: bash -c "pip install -r requirements-dev.txt && python manage.py runserver 0.0.0.0:8000"

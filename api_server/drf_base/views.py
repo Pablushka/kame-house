@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User, Group
+from django.http import HttpResponse
+
 from rest_framework import viewsets
 from rest_framework import permissions
+
 from .serializers import UserSerializer, GroupSerializer
 
 # Create your views here.
@@ -21,3 +24,14 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+def test(request):
+    return HttpResponse('hello pablo!')
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view()
+def test_jason(request):
+    return Response({"name":"Jason Mayne"})
